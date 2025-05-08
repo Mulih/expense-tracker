@@ -120,6 +120,7 @@ def update_expense(expense_id, amount):
             return
     print(f"Expense {expense_id} not found")
 
+
 """Delete an expense"""
 def delete_expense(expense_id):
     expenses = load_expenses()
@@ -127,9 +128,20 @@ def delete_expense(expense_id):
     save_expenses(expenses)
     print(f"Expense {expense_id} deleted")
 
-def view_summary():
+def view_summary(month=None):
     expenses = load_expenses()
     total = 0
+    if month:
+        expenses = [
+            expense for expense in expenses
+            if datetime.fromisoformat(expense["Date"]).month == month
+        ]
+
+    # Calculate total amount
     for expense in expenses:
         total += expense["Amount"]
-    print(f"Total expenses: ${total}")
+
+    if month:
+        print(f"Total expenses for month {month}: ${total}")
+    else:
+        print(f"Total expenses: ${total}")
