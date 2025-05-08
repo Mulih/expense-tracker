@@ -28,9 +28,37 @@ class Expense:
         return cls(
             id=data["id"],
             description=data["description"],
-            amount=data["status"],
+            amount=data["amount"],
             created_at=datetime.fromisoformat(data["created_at"]),
             updated_at=datetime.fromisoformat(data["updated_at"]),
         )
 
-"""Load tasks to a JSON file."""
+"""Load expenses to a JSON file"""
+def load_expenses():
+    # load tasks from the JSON file
+    if not os.path.exists(EXPENSE_FILE):
+        return [] # return empty file
+    with open(EXPENSE_FILE, 'r') as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            print("Error opening file, starting with empty expense list")
+            return []
+
+"""Save expenses to a expenses.json file"""
+def save_expenses(expenses):
+    with open(EXPENSE_FILE, 'w') as f:
+        json.dump(expenses, f, indent=4)
+
+"""Add a new expense"""
+def add_expense(description, amount):
+    expenses = load_expenses()
+    new_expense = {
+        "id": len(expenses) + 1,
+        "Description": description,
+        "Amount": amount,
+    }
+    expenses.append(new_expense)
+    save_expenses(expenses)
+    print(f"Expense added: {new_expense}")
+
