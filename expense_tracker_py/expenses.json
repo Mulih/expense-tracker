@@ -1,7 +1,38 @@
 [
     {
         "id": 1,
+        "Date": "2025-05-08",
         "Description": "lunch",
         "Amount": 20.0
+    },
+    {
+        "id": 2,
+        "Date": "2025-05-08",
+        "Description": "credit",
+        "Amount": 100.0
+    },
+    {
+        "id": 3,
+        "Date": "2025-05-08",
+        "Description": "WiFi",
+        "Amount": 3500.0
+    },
+    {
+        "id": 4,
+        "Date": "2025-05-08",
+        "Description": "rent",
+        "Amount": 17000.0
+    },
+    {
+        "id": 5,
+        "Date": "2025-05-08",
+        "Description": "water",
+        "Amount": 1200.0
+    },
+    {
+        "id": 6,
+        "Date": "2025-05-08",
+        "Description": "electricity",
+        "Amount": 2500.0
     }
 ]

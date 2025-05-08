@@ -11,9 +11,26 @@ def main():
     parser = ArgumentParser(description="Expense Tracker CLI")
     subparsers = parser.add_subparsers(dest="command", help="Commands")
 
+    # Add command
     add_parser = subparsers.add_parser("add", help="A new expense")
     add_parser.add_argument("--description",type=str, required=True, help="Expense description")
     add_parser.add_argument("--amount", type=float, required=True, help="Expense amount")
+
+    # List command
+    list_parser = subparsers.add_parser("list", help="List all expenses")
+
+    # View summary command
+    summary_parser = subparsers.add_parser("summary", help="view a summary of all expenses.")
+    summary_parser.add_argument("--month", type=int, action="store_true", help="view a summary of expenses for a specific month (of current year)")
+
+    # Update an expense
+    update_parser = subparsers.add_parser("update", help="update and expense")
+    update_parser.add_argument("--id", type=int, required=True, help="ID of the expense to be updated")
+    update_parser.add_argument("--amount", type=float, required=True, help="updated amount")
+
+    # Delete an expense
+    delete_parser = subparsers.add_parser("delete", help="delete an expense")
+    delete_parser.add_argument("--id", type=int, required=True, help="ID of the expense to be deleted")
 
     args: Namespace = parser.parse_args()
 
@@ -23,6 +40,11 @@ def main():
 
     commands = {
         "add": lambda: add_expense(args.description, args.amount),
+        "list": lambda: list_expenses(),
+        "summary": lambda: view_summary(),
+        "update": lambda: update_expense(args.expense_id, args.amount),
+        "delete": lambda: delete_expense(args.expense_id),
+        
     }
 
     command_function = commands.get(args.command, parser.print_help)
