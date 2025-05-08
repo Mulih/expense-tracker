@@ -32,3 +32,5 @@ class Expense:
             created_at=datetime.fromisoformat(data["created_at"]),
             updated_at=datetime.fromisoformat(data["updated_at"]),
         )
+
+"""Load tasks to a JSON file."""
