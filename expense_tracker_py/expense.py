@@ -2,7 +2,7 @@ from datetime import datetime
 import json
 import os
 
-EXPENSE_FILE = os.path.join(os.path.dirname(__file__), 'tasks.json')
+EXPENSE_FILE = os.path.join(os.path.dirname(__file__), 'expenses.json')
 
 # Expense class to represent a task
 class Expense:
