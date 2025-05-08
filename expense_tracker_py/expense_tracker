@@ -21,7 +21,7 @@ def main():
 
     # View summary command
     summary_parser = subparsers.add_parser("summary", help="view a summary of all expenses.")
-    summary_parser.add_argument("--month", type=int, action="store_true", help="view a summary of expenses for a specific month (of current year)")
+    summary_parser.add_argument("--month", action="store_true", help="view a summary of expenses for a specific month (of current year)")
 
     # Update an expense
     update_parser = subparsers.add_parser("update", help="update and expense")
@@ -44,7 +44,7 @@ def main():
         "summary": lambda: view_summary(),
         "update": lambda: update_expense(args.expense_id, args.amount),
         "delete": lambda: delete_expense(args.expense_id),
-        
+
     }
 
     command_function = commands.get(args.command, parser.print_help)

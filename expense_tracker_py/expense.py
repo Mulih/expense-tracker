@@ -98,7 +98,10 @@ def list_expenses():
         for fld, w in zip(fields, widths):
             cell = str(expense.get(fld, ''))
 
-            if fld in ('id', 'Amount'):
+            if fld in ('Amount'):
+                cell = f"${cell}"
+                row_cells.append(cell.rjust(w))
+            elif fld == 'id':
                 row_cells.append(cell.rjust(w))
             else:
                 row_cells.append(cell.ljust(w))
@@ -113,7 +116,7 @@ def update_expense(expense_id, amount):
         if expense["id"] == expense_id:
             expense["Amount"] = amount
             save_expenses(expenses)
-            print(f"Expense {expense_id} updated amount to {amount}")
+            print(f"Expense {expense_id} updated amount to ${amount}")
             return
     print(f"Expense {expense_id} not found")
 
@@ -126,7 +129,7 @@ def delete_expense(expense_id):
 
 def view_summary():
     expenses = load_expenses()
+    total = 0
     for expense in expenses:
-        total += expenses
-
-    return total
+        total += expense["Amount"]
+    print(f"Total expenses: ${total}")
