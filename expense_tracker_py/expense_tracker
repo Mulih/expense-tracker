@@ -42,8 +42,8 @@ def main():
         "add": lambda: add_expense(args.description, args.amount),
         "list": lambda: list_expenses(),
         "summary": lambda: view_summary(args.month),
-        "update": lambda: update_expense(args.expense_id, args.amount),
-        "delete": lambda: delete_expense(args.expense_id),
+        "update": lambda: update_expense(args.id, args.amount),
+        "delete": lambda: delete_expense(args.id),
 
     }
 
