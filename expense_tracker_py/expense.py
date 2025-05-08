@@ -1,6 +1,9 @@
 from datetime import datetime
 import json
+import sys
 import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')))
 
 EXPENSE_FILE = os.path.join(os.path.dirname(__file__), 'expenses.json')
 
@@ -61,4 +64,3 @@ def add_expense(description, amount):
     expenses.append(new_expense)
     save_expenses(expenses)
     print(f"Expense added: {new_expense}")
-
